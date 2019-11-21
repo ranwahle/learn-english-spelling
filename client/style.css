@@ -1,0 +1,38 @@
+button {
+    background-color: #5474ff;
+    border-radius: 3px;
+    color: white;
+    font-size:1.1em;
+}
+
+div.table {
+    display: grid;
+    grid-template-columns: auto auto;
+    border-bottom: solid 1px;
+    border-right: solid 1px;
+    border-color: rgba(100,100,100,1);
+
+}
+
+header {
+    background-color: #5474ff;
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+}
+
+div.table div {
+    border-top: solid 1px;
+    border-left: solid 1px;
+}
+
+.hebrew {
+    dir: rtl;
+    text-align: right;
+}
+
+
