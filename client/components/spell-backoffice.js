@@ -1,4 +1,5 @@
 import {getSpellingWords, setSpellingWords} from "../speller-service.js";
+import {notify} from "../notifications.js";
 const wordsListContainerId = 'words-list';
 
 export class SpellBackoffice extends HTMLElement {
@@ -9,6 +10,19 @@ export class SpellBackoffice extends HTMLElement {
     }
 
     setEvents() {
+
+        this.querySelector('input[type="file"]').onchange = (evt) => {
+            const {files} = evt.target;
+            const buttonImport = this.querySelector('#btnImport');
+            if (files && files.length) {
+                buttonImport.classList.remove('disable');
+               buttonImport.removeAttribute('disabled');
+            } else {
+                buttonImport.classList.add('disable');
+                buttonImport.setAttribute('disabled' ,'disabled');
+            }
+
+        }
         this.querySelector('#btnSave').onclick = () => {
             const words = this.buildWords();
             const newFile = new File([JSON.stringify(words)], 'wordForSpellChecking.json', {
@@ -16,6 +30,7 @@ export class SpellBackoffice extends HTMLElement {
             });
            saveAs(newFile);
             setSpellingWords(words);
+            notify({type: 'success', message: 'Words were saved to a file, look at your download folder'})
         };
 
         this.querySelector('#btnAdd').onclick = () => {
@@ -25,6 +40,7 @@ export class SpellBackoffice extends HTMLElement {
             this.words.push(newWord);
             setSpellingWords(this.words);
             this.renderWords(this.words);
+            notify({tyle: 'success', message: `The word ${newWord.english} has been added`})
         }
 
         this.querySelector('#btnImport').onclick= () => {
@@ -43,6 +59,8 @@ export class SpellBackoffice extends HTMLElement {
                     setSpellingWords(words);
                     this.words = words;
                     this.renderWords(words);
+                    notify({type: 'success', message: 'Words were imported successfully'})
+
                 } catch (e) {
                     console.error('Could not read JSON file')
                 }
@@ -91,7 +109,7 @@ export class SpellBackoffice extends HTMLElement {
 
 <div>
 <input type="file" placeholder="JSON file" accept="application/json">
-<button id="btnImport">Import from file</button></div>`
+<button id="btnImport" disabled="disabled" class="disable">Import from file</button></div>`
     }
 }
 

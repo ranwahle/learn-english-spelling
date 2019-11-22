@@ -1,4 +1,5 @@
 import {getSpellingWords} from "../speller-service.js";
+import {notify} from "../notifications.js";
 
 const trainingAreaID = 'training-area';
 const scoreAreaID = 'score-area';
@@ -18,15 +19,19 @@ export class SpellTraining extends HTMLElement {
 
     setEvents() {
         this.querySelector(`#${amIRightButtonId}`).onclick = () => {
-            const guess = this.querySelector(`#${answerAreaId} input`).value;
+            const textField = this.querySelector(`#${answerAreaId} input`);
+            const guess = textField.value;
             if (!guess) {
                 return;
             }
             if (guess.toLowerCase().localeCompare(this.tempWord.english.toLowerCase()) === 0) {
                 this.score.right++;
+                notify({type: 'success', message: 'Yes You are right!'})
                 this.words = this.words.filter(word => word !== this.tempWord);
+                textField.value = '';
                 this.presentWord();
             } else {
+                notify({type: 'error', message: 'Hmmm no, try again.'})
                 this.score.wrong++;
             }
             const {score} = this;
@@ -53,7 +58,9 @@ export class SpellTraining extends HTMLElement {
 
         this.tempWord = this.words[randomIndex];
 
-        trainingArea.innerText = `${this.tempWord.hebrew}`;
+
+
+        trainingArea.innerText = this.tempWord ?  `${this.tempWord.hebrew}`: 'ניחשת את כל המילים';
 
 
     }
