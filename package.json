@@ -15,9 +15,9 @@
     "@vanillarouter/router-module": "0.1.0-beta.7",
     "express": "^4.17.1",
     "file-saver": "^2.0.2",
-    "get-arguments-lib": "^1.0.1"
-  },
-  "devDependencies": {
+    "get-arguments-lib": "^1.0.1",
     "@fortawesome/fontawesome-free": "^5.11.2"
-  }
+
+  },
+
 }
