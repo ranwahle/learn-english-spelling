@@ -18,6 +18,9 @@ export class SpellTraining extends HTMLElement {
     }
 
     setEvents() {
+        this.querySelector('form').onsubmit = () => {
+            return false;
+        }
         this.querySelector(`#${amIRightButtonId}`).onclick = () => {
             const textField = this.querySelector(`#${answerAreaId} input`);
             const guess = textField.value;
@@ -35,7 +38,7 @@ export class SpellTraining extends HTMLElement {
                 this.score.wrong++;
             }
             const {score} = this;
-            this.querySelector(`#${scoreAreaID}`).innerText = `${score.right} / ${score.right + score.wrong}`;
+            this.querySelector(`#${scoreAreaID}`).innerText = `${score.right} / ${score.right + score.wrong} - ${this.words.length} left`;
         }
     }
 
@@ -68,10 +71,12 @@ export class SpellTraining extends HTMLElement {
     render() {
 
         this.innerHTML = `<h1>Training</h1>
-    <div id="${trainingAreaID}"></div>
+    <div style="direction: rtl" id="${trainingAreaID}"></div>
     <div id="${answerAreaId}">
+    <form>
     <input id="answer" type="text" placeholder="Your answer">
-    <button id="${amIRightButtonId}">Am I right?</button>
+    <button type="submit" id="${amIRightButtonId}">Am I right?</button>
+    </form>
 </div>
     <div id="${scoreAreaID}"></div>
 `;

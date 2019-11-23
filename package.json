@@ -16,5 +16,8 @@
     "express": "^4.17.1",
     "file-saver": "^2.0.2",
     "get-arguments-lib": "^1.0.1"
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.11.2"
   }
 }

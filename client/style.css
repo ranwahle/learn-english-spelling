@@ -3,6 +3,11 @@ button {
     border-radius: 3px;
     color: white;
     font-size:1.1em;
+    transition: background-color 0.5s;
+
+}
+button:not(.disable):hover {
+    background-color: #811ffe;
 }
 
 button.disable {
@@ -11,11 +16,14 @@ button.disable {
 
 div.table {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: auto auto 5.5em;
     border-bottom: solid 1px;
     border-right: solid 1px;
     border-color: rgba(100,100,100,1);
 
+}
+.hidden {
+    display: none;
 }
 
 header {
@@ -33,6 +41,13 @@ header a {
 div.table div {
     border-top: solid 1px;
     border-left: solid 1px;
+    line-height: 1.6;
+    transition: background-color 0.5s;
+
+}
+div.table div:hover {
+    background-color: #dddddd;
+    transition: background-color 0.5s;
 }
 
 .hebrew {
