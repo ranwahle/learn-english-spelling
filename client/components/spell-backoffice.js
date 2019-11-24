@@ -115,14 +115,13 @@ export class SpellBackoffice extends HTMLElement {
         wordsListContainer.innerHTML = wordsHTML;
 
         const editButtonClick = (evt) => {
-            const button = evt.currentTarget;
+            const button = evt.target;
 
             const index = +button.getAttribute('data-index');
             this.startEdit(index);
             button.classList.add('hidden');
             button.parentElement.querySelector('.approve-edit').classList.remove('hidden');
             button.parentElement.querySelector('.cancel-edit').classList.remove('hidden');
-
 
 
         }

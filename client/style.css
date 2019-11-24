@@ -1,3 +1,7 @@
+body {
+    font-family: sans-serif;
+}
+
 button {
     background-color: #5474ff;
     border-radius: 3px;
@@ -53,6 +57,8 @@ div.table div:hover {
 .hebrew {
     dir: rtl;
     text-align: right;
+    font-family: Arial;
+    font-size: 1.2em;
 }
 
 
