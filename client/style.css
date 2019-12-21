@@ -2,6 +2,7 @@ body {
     font-family: sans-serif;
 }
 
+
 button {
     background-color: #5474ff;
     border-radius: 3px;
@@ -62,3 +63,12 @@ div.table div:hover {
 }
 
 
+@media screen and (max-width: 600px) {
+    body {
+        font-size: 2em;
+    }
+    input {
+        border-style: none;
+        font-size: 2em;
+    }
+}

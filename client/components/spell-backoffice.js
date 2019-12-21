@@ -115,7 +115,7 @@ export class SpellBackoffice extends HTMLElement {
         wordsListContainer.innerHTML = wordsHTML;
 
         const editButtonClick = (evt) => {
-            const button = evt.target;
+            const button = evt.currentTarget;
 
             const index = +button.getAttribute('data-index');
             this.startEdit(index);

@@ -27,7 +27,7 @@ export class SpellTraining extends HTMLElement {
             if (!guess) {
                 return;
             }
-            if (guess.toLowerCase().localeCompare(this.tempWord.english.toLowerCase()) === 0) {
+            if (guess.toLowerCase().trim().localeCompare(this.tempWord.english.toLowerCase().trim()) === 0) {
                 this.score.right++;
                 notify({type: 'success', message: 'Yes You are right!'})
                 this.words = this.words.filter(word => word !== this.tempWord);
