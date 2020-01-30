@@ -104,7 +104,6 @@ export class SpellBackoffice extends HTMLElement {
             return `<editable-content data-content="${word.english}"></editable-content>
             <editable-content data-content="${word.hebrew}"></editable-content>
                 
-
                 <div> <button class="edit-button"> <i class="fas fa-pencil-alt"></i></button>
                 <button class="approve-edit hidden"><i class="fas fa-check"></i></button>
                 <button class="cancel-edit hidden"><i class="fas fa-times"></i></button>
@@ -140,6 +139,7 @@ export class SpellBackoffice extends HTMLElement {
             delete word.englishCandidat;
 
             button.classList.add('hidden');
+            button.parentElement.querySelector('.cancel-edit').classList.add('hidden');
             button.parentElement.querySelector('.edit-button').classList.remove('hidden');
             setSpellingWords(this.words);
         }
