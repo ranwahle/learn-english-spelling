@@ -79,8 +79,16 @@ export class SpellBackoffice extends HTMLElement {
     }
 
     getEditableComponents(wordIndex) {
-        const editableContentEnglish = this.querySelector(`editable-content[data-content="${this.words[wordIndex].english}"`);
-        const editableContentHebrew = this.querySelector(`editable-content[data-content="${this.words[wordIndex].hebrew}"`);
+        let editableContentEnglish = this.querySelector(`editable-content[data-content="${this.words[wordIndex].english}"`);
+        let editableContentHebrew = this.querySelector(`editable-content[data-content="${this.words[wordIndex].hebrew}"`);
+
+        if (editableContentEnglish === null) {
+            editableContentEnglish = editableContentHebrew.parentElement.querySelectorAll('editable-content')[0];
+        }
+
+        if (editableContentHebrew === null) {
+            editableContentHebrew = editableContentEnglish.parentElement.querySelectorAll('editable-content')[1];
+        }
 
         return {editableContentEnglish, editableContentHebrew};
 
