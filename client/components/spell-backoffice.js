@@ -79,8 +79,8 @@ export class SpellBackoffice extends HTMLElement {
     }
 
     getEditableComponents(wordIndex) {
-        let editableContentEnglish = this.querySelector(`editable-content[data-content="${this.words[wordIndex].english}"`);
-        let editableContentHebrew = this.querySelector(`editable-content[data-content="${this.words[wordIndex].hebrew}"`);
+        let editableContentEnglish = this.querySelector(`editable-content[data-index="english-${wordIndex}"`);
+        let editableContentHebrew = this.querySelector(`editable-content[data-index="hebrew-${wordIndex}"`);
 
         if (editableContentEnglish === null) {
             editableContentEnglish = editableContentHebrew.parentElement.querySelectorAll('editable-content')[0];
@@ -108,9 +108,9 @@ export class SpellBackoffice extends HTMLElement {
         if (!words || !words.length) {
             return;
         }
-        const wordsHTML = words.map(word => {
-            return `<editable-content data-content="${word.english}"></editable-content>
-            <editable-content data-content="${word.hebrew}"></editable-content>
+        const wordsHTML = words.map((word, index) => {
+            return `<editable-content data-content="${word.english}" data-index="english-${index}"></editable-content>
+            <editable-content data-content="${word.hebrew}" data-index="hebrew-${index}"></editable-content>
                 
                 <div> <button class="edit-button"> <i class="fas fa-pencil-alt"></i></button>
                 <button class="approve-edit hidden"><i class="fas fa-check"></i></button>
@@ -160,6 +160,7 @@ export class SpellBackoffice extends HTMLElement {
             button.parentElement.querySelector('.edit-button').classList.remove('hidden');
             const index = +approveEditButton.getAttribute('data-index');
             this.setEditState(index, false);
+            this.renderWords(this.words);
 
         }
 
@@ -188,8 +189,8 @@ export class SpellBackoffice extends HTMLElement {
         editableContentHebrew.editable = editState;
         editableContentEnglish.editable = editState;
 
-        editableContentEnglish.onchange = newValue => this.words[wordIndex].engilshCandidat = newValue;
-        editableContentHebrew.onchange = newValue => this.words[wordIndex].hebrewCandidat = newValue;
+        editableContentEnglish.onchange = newValue => this.words[index].engilshCandidat = newValue;
+        editableContentHebrew.onchange = newValue => this.words[index].hebrewCandidat = newValue;
     }
 
     getWords() {
