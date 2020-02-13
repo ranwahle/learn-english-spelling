@@ -97,7 +97,7 @@ export class SpellBackoffice extends HTMLElement {
     startEdit(wordIndex) {
         this.setEditState(wordIndex, true);
 
-        this.words[wordIndex].engilshCandidat = this.words[wordIndex].engilsh;
+        this.words[wordIndex].engilshCandidat = this.words[wordIndex].english;
         this.words[wordIndex].hebrewCandidat = this.words[wordIndex].hebrew;
 
 
@@ -141,7 +141,7 @@ export class SpellBackoffice extends HTMLElement {
             this.setEditState(index, false);
 
             word.hebrew = word.hebrewCandidat;
-            word.engilsh = word.englishCandidat;
+            word.english = word.englishCandidat;
 
             delete word.hebrewCandidat;
             delete word.englishCandidat;
@@ -189,7 +189,7 @@ export class SpellBackoffice extends HTMLElement {
         editableContentHebrew.editable = editState;
         editableContentEnglish.editable = editState;
 
-        editableContentEnglish.onchange = newValue => this.words[index].engilshCandidat = newValue;
+        editableContentEnglish.onchange = newValue => this.words[index].englishCandidat = newValue;
         editableContentHebrew.onchange = newValue => this.words[index].hebrewCandidat = newValue;
     }
 
